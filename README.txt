@@ -1,1 +1,1 @@
-CloudFront Path Invalidate
+If you have AWS CloudFront CDN setup in front of your web server then you can use this module to invalidate pages on CDN
