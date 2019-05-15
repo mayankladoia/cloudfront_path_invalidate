@@ -147,9 +147,7 @@ function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
       <CallerReference>{$distribution}{$epoch}</CallerReference>
       </InvalidationBatch> 
 EOD;
-    /**
-     * You probably don't need to change anything below here.
-     */
+    /* You probably don't need to change anything below here. */
     $len = strlen($xml);
     $date = gmdate('D, d M Y G:i:s T');
     $sig = base64_encode(
@@ -166,18 +164,20 @@ EOD;
       $errno, $errstr, 30
     );
     if (!$fp) {
-      //die("Connection failed: {$errno} {$errstr}\n");
+      /* Alternate Code die("Connection failed: {$errno} {$errstr}\n");.*/
       return 0;
     }
-    if (!fwrite($fp, $msg))
+    if (!fwrite($fp, $msg)) {
       return 0;
+    }
     $resp = '';
     while (!feof($fp)) {
       $resp .= fgets($fp, 1024);
     }
     fclose($fp);
-    if ($resp = '')
+    if ($resp = '') {
       return 0;
+    }
   }
   return 1;
 }
@@ -188,7 +188,7 @@ EOD;
 function cloudfront_path_invalidate_path_update($path) {
   $paths = array(
     $path['alias'],
-    $path['source']
+    $path['source'],
   );
   cloudfront_path_invalidate_invalidate_on_cloudfront($paths);
 }
@@ -199,7 +199,7 @@ function cloudfront_path_invalidate_path_update($path) {
 function cloudfront_path_invalidate_path_insert($path) {
   $paths = array(
     $path['alias'],
-    $path['source']
+    $path['source'],
   );
   cloudfront_path_invalidate_invalidate_on_cloudfront($paths);
 }
@@ -210,11 +210,14 @@ function cloudfront_path_invalidate_path_insert($path) {
 function cloudfront_path_invalidate_path_delete($path) {
   $paths = array(
     $path['alias'],
-    $path['source']
+    $path['source'],
   );
   cloudfront_path_invalidate_invalidate_on_cloudfront($paths);
 }
 
+/**
+ * Main function that clears CDN and varnish cache.
+ */
 function cloudfront_path_invalidate_invalidation_page_submit($form, &$form_state) {
   $paths = array(
     htmlspecialchars($form["cloudfront_path_invalidate_invalidation_url"]["#value"],
