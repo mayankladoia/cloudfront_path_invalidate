@@ -1,5 +1,20 @@
 Readme
 ================================================================================
+
+CONTENTS OF THIS FILE
+---------------------
+
+ * Introduction
+ * Requirements
+ * Recommended modules
+ * Installation
+ * Configuration
+ * Troubleshooting
+ * FAQ
+ * Maintainers
+
+INTRODUCTION
+================================================================================
 If you have AWS CloudFront CDN setup in front of your web server then you can use this module to invalidate pages/paths on CDN.
 
 Features Include:
@@ -9,7 +24,21 @@ Features Include:
     3.  Automatically Clear paths on CloudFront on node Add/Delete/Update
     4.  Acquia/Pantheon Varnish Cache clear
 
-Configurability
+
+REQUIREMENTS
+================================================================================
+Drupal 7.x
+CloudFront Setup
+    AWS Distribution ID
+    AWS Access Key
+    AWS Secret Key
+
+INSTALLATION
+================================================================================
+/admin/config/cloudfront_path_invalidate_settings/CDNkeys
+
+
+CONFIGURATION
 ================================================================================
 
 If you are hosted on Acquia the you need to add this code in your settings.php
