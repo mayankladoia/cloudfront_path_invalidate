@@ -115,7 +115,7 @@ function invalidate_on_cloudfront($paths)
             $service = _acquia_purge_service();
             $service->addPath($url);
             if ($service->lockAcquire()) {
-                $result = $service->process();
+                $service->process();
                 $service->lockRelease();
             }
         }
