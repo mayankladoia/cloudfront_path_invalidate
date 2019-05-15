@@ -1,8 +1,10 @@
 <?php
+
 /**
  * @file
  * CloudFRont Path invalidate primary module file.
  */
+
 /**
  * Implements hook_permission().
  */
