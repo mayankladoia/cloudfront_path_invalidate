@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * @file
+ * CloudFRont Path invalidate primary module file.
+ */
 /**
  * Implements hook_permission().
  */
@@ -39,6 +42,9 @@ function cloudfront_path_invalidate_menu() {
   return $items;
 }
 
+/**
+ * Config form for invalidating one path.
+ */
 function cloudfront_path_invalidate_invalidation_page($form, &$form_state) {
   $form['cloudfront_path_invalidate_invalidation_url'] = array(
     '#type' => 'textfield',
@@ -53,6 +59,9 @@ function cloudfront_path_invalidate_invalidation_page($form, &$form_state) {
   return $form;
 }
 
+/**
+ * Config form for setting AWS keys/credentials.
+ */
 function cloudfront_path_invalidate_keys_settings_page($form, &$form_state) {
   $form['cloudfront_path_invalidate_distribution'] = array(
     '#type' => 'textfield',
@@ -93,17 +102,21 @@ function cloudfront_path_invalidate_keys_settings_page($form, &$form_state) {
   return system_settings_form($form);
 }
 
+/**
+ * Main function that clears CDN and varnish cache.
+ */
 function invalidate_on_cloudfront($paths) {
   $distribution = variable_get('cloudfront_path_invalidate_distribution');
   $access_key = variable_get('cloudfront_path_invalidate_access');
   $secret_key = variable_get('cloudfront_path_invalidate_secret');
-  if ($distribution == "" || $access_key == "" || $secret_key == "")
+  if ($distribution == "" || $access_key == "" || $secret_key == ""){
     return 0;
+  }
   if (in_array(variable_get('cloudfront_path_invalidate_homapage'), $paths)) {
     array_push($paths, "");
   }
 
-  //adding "/" to all paths
+  /*Adding "/" to all paths.*/
   array_walk($paths, function (&$value, $key) { $value = '/' . $value; });
   if (variable_get(cloudfront_path_invalidate_host_provider) == 1) {
     pantheon_clear_edge_paths($paths);
