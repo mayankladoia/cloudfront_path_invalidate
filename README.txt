@@ -15,7 +15,8 @@ CONTENTS OF THIS FILE
 
 INTRODUCTION
 ================================================================================
-If you have AWS CloudFront CDN setup in front of your web server then you can use this module to invalidate pages/paths on CDN.
+If you have AWS CloudFront CDN setup in front of your web server
+then you can use this module to invalidate pages/paths on CDN.
 
 Features Include:
 
