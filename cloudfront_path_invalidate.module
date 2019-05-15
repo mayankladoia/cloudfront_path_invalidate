@@ -102,12 +102,12 @@ function invalidate_on_cloudfront($paths)
 
     //adding "/" to all paths
     array_walk($paths, function(&$value, $key) { $value = '/'.$value; } );
-    if(variable_get(cloudfront_path_invalidate_host_provider) == 1){
+    if(variable_get('cloudfront_path_invalidate_host_provider') == 1){
         pantheon_clear_edge_paths($paths);
     }
     $i = rand();
     foreach ($paths as &$url) {
-        if(variable_get(cloudfront_path_invalidate_host_provider) == 0) {
+        if(variable_get('cloudfront_path_invalidate_host_provider') == 0) {
             $service = _acquia_purge_service();
             $service->addPath($url);
             if ($service->lockAcquire()) {
