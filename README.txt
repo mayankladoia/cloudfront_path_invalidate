@@ -68,4 +68,5 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
     }
 }
 
-Ref: https://support.acquia.com/hc/en-us/articles/360005304593-Acquia-Purge-domain-detection
+Ref:
+support.acquia.com/hc/en-us/articles/360005304593-Acquia-Purge-domain-detection
