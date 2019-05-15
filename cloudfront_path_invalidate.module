@@ -120,10 +120,10 @@ function invalidate_on_cloudfront($paths)
         $epoch = date('U') + $i;
         $i++;
         $xml = <<<EOD
-              <InvalidationBatch>
-              <Path>{$onefile}</Path>
-              <CallerReference>{$distribution}{$epoch}</CallerReference>
-              </InvalidationBatch>
+          <InvalidationBatch>
+          <Path>{$onefile}</Path>
+          <CallerReference>{$distribution}{$epoch}</CallerReference>
+          </InvalidationBatch>
 EOD;
         /**
          * You probably don't need to change anything below here.
