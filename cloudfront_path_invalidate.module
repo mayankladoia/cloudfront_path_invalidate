@@ -111,7 +111,7 @@ function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
   $distribution = variable_get('cloudfront_path_invalidate_distribution');
   $access_key = variable_get('cloudfront_path_invalidate_access');
   $secret_key = variable_get('cloudfront_path_invalidate_secret');
-  if ($distribution == "" || $access_key == "" || $secret_key == ""){
+  if ($distribution == "" || $access_key == "" || $secret_key == "") {
     return 0;
   }
   if (in_array(variable_get('cloudfront_path_invalidate_homapage'), $paths)) {
@@ -119,7 +119,11 @@ function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
   }
 
   /*Adding "/" to all paths.*/
-  array_walk($paths, function (&$value, $key) { $value = '/' . $value; });
+  array_walk($paths,
+    function (&$value, $key) {
+      $value = '/' . $value;
+    }
+  );
   if (variable_get(cloudfront_path_invalidate_host_provider) == 1) {
     pantheon_clear_edge_paths($paths);
   }
@@ -133,7 +137,7 @@ function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
         $service->lockRelease();
       }
     }
-    //Invalidating object at AWS CloudFront
+    /*Invalidating object at AWS CloudFront.*/
     $onefile = $url;
     $epoch = date('U') + $i;
     $i++;
