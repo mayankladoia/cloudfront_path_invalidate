@@ -192,29 +192,18 @@ EOD;
     $sig = base64_encode(
       hash_hmac('sha1', $date, $secret_key, TRUE)
     );
-    $msg = "POST /2010-11-01/distribution/{$distribution}/invalidation HTTP/1.0\r\n";
-    $msg .= "Host: cloudfront.amazonaws.com\r\n";
-    $msg .= "Date: {$date}\r\n";
-    $msg .= "Content-Type: text/xml; charset=UTF-8\r\n";
-    $msg .= "Authorization: AWS {$access_key}:{$sig}\r\n";
-    $msg .= "Content-Length: {$len}\r\n\r\n";
-    $msg .= $xml;
-    $fp = fsockopen('ssl://cloudfront.amazonaws.com', 443,
-      $errno, $errstr, 30
+    $options = array(
+      'method' => 'POST',
+      'headers' => array(
+        'Content-Type' => 'text/xml; charset=UTF-8',
+        'Authorization' => 'AWS '.$access_key.':'.$sig.'',
+        'Content-Length' => $len,
+        'Date' => $date),
+      'timeout' => 300000,
+      'data' => $xml
     );
-    if (!$fp) {
-      /* Alternate Code die("Connection failed: {$errno} {$errstr}\n");.*/
-      return 0;
-    }
-    if (!fwrite($fp, $msg)) {
-      return 0;
-    }
-    $resp = '';
-    while (!feof($fp)) {
-      $resp .= fgets($fp, 1024);
-    }
-    fclose($fp);
-    if ($resp = '') {
+    $response = drupal_http_request('https://cloudfront.amazonaws.com/2010-11-01/distribution/'.$distribution.'/invalidation', $options);
+    if ($response->code != 201) {
       return 0;
     }
   }
