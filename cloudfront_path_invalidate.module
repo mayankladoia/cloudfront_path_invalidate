@@ -144,18 +144,6 @@ function cloudfront_path_invalidate_help($path, $arg) {
 }
 
 /**
- * Implements hook_uninstall().
- */
-function cloudfront_path_invalidate_uninstall() {
-  variable_del('cloudfront_path_invalidate_invalidation_url');
-  variable_del('cloudfront_path_invalidate_distribution');
-  variable_del('cloudfront_path_invalidate_access');
-  variable_del('cloudfront_path_invalidate_secret');
-  variable_del('cloudfront_path_invalidate_homapage');
-  variable_del('cloudfront_path_invalidate_host_provider');
-}
-
-/**
  * Main function that clears CDN and varnish cache.
  */
 function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
