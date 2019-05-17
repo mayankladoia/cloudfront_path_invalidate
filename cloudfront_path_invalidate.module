@@ -24,8 +24,8 @@ function cloudfront_path_invalidate_permission() {
 function cloudfront_path_invalidate_menu() {
   $items = array();
   $items['admin/config/cloudfront_path_invalidate_settings/CDNInvalidate'] = array(
-    'title' => 'CloudFront Node Invalidation',
-    'description' => 'For invalidating nodes in AWS CLoudFront',
+    'title' => t('CloudFront Node Invalidation'),
+    'description' => t('For invalidating nodes in AWS CLoudFront'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cloudfront_path_invalidate_invalidation_page'),
     'access arguments' => array('administer cloudfront_path_invalidate'),
@@ -34,7 +34,7 @@ function cloudfront_path_invalidate_menu() {
   );
 
   $items['admin/config/cloudfront_path_invalidate_settings/CDNkeys'] = array(
-    'title' => 'CloudFront Keys/Host provider Settings',
+    'title' => t('CloudFront Keys/Host provider Settings'),
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cloudfront_path_invalidate_keys_settings_page'),
     'access arguments' => array('administer cloudfront_path_invalidate'),
@@ -56,7 +56,7 @@ function cloudfront_path_invalidate_invalidation_page($form, &$form_state) {
   );
   $form['submit'] = array(
     '#type' => 'submit',
-    '#value' => 'Clear on AWS Cloudfront',
+    '#value' => t('Clear on AWS Cloudfront'),
   );
   return $form;
 }
@@ -163,12 +163,12 @@ function cloudfront_path_invalidate_invalidate_on_cloudfront($paths) {
       $value = '/' . $value;
     }
   );
-  if (variable_get(cloudfront_path_invalidate_host_provider) == 1) {
+  if (variable_get('cloudfront_path_invalidate_host_provider') == 1) {
     pantheon_clear_edge_paths($paths);
   }
   $i = rand();
   foreach ($paths as &$url) {
-    if (variable_get(cloudfront_path_invalidate_host_provider) == 0) {
+    if (variable_get('cloudfront_path_invalidate_host_provider') == 0) {
       $service = _acquia_purge_service();
       $service->addPath($url);
       if ($service->lockAcquire()) {
