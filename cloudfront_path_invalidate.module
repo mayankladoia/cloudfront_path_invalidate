@@ -24,8 +24,8 @@ function cloudfront_path_invalidate_permission() {
 function cloudfront_path_invalidate_menu() {
   $items = array();
   $items['admin/config/cloudfront_path_invalidate_settings/CDNInvalidate'] = array(
-    'title' => t('CloudFront Node Invalidation'),
-    'description' => t('For invalidating nodes in AWS CLoudFront'),
+    'title' => 'CloudFront Node Invalidation',
+    'description' => 'For invalidating nodes in AWS CLoudFront',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cloudfront_path_invalidate_invalidation_page'),
     'access arguments' => array('administer cloudfront_path_invalidate'),
@@ -34,7 +34,7 @@ function cloudfront_path_invalidate_menu() {
   );
 
   $items['admin/config/cloudfront_path_invalidate_settings/CDNkeys'] = array(
-    'title' => t('CloudFront Keys/Host provider Settings'),
+    'title' => 'CloudFront Keys/Host provider Settings',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('cloudfront_path_invalidate_keys_settings_page'),
     'access arguments' => array('administer cloudfront_path_invalidate'),
