@@ -196,13 +196,14 @@ EOD;
       'method' => 'POST',
       'headers' => array(
         'Content-Type' => 'text/xml; charset=UTF-8',
-        'Authorization' => 'AWS '.$access_key.':'.$sig.'',
+        'Authorization' => 'AWS ' . $access_key . ':' . $sig . '',
         'Content-Length' => $len,
-        'Date' => $date),
+        'Date' => $date
+      ),
       'timeout' => 300000,
-      'data' => $xml
+      'data' => $xml,
     );
-    $response = drupal_http_request('https://cloudfront.amazonaws.com/2010-11-01/distribution/'.$distribution.'/invalidation', $options);
+    $response = drupal_http_request('https://cloudfront.amazonaws.com/2010-11-01/distribution/' . $distribution . '/invalidation', $options);
     if ($response->code != 201) {
       return 0;
     }
