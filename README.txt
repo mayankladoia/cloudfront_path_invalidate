@@ -6,12 +6,8 @@ CONTENTS OF THIS FILE
 
  * Introduction
  * Requirements
- * Recommended modules
  * Installation
  * Configuration
- * Troubleshooting
- * FAQ
- * Maintainers
 
 INTRODUCTION
 ================================================================================
@@ -33,6 +29,7 @@ CloudFront Setup
     AWS Distribution ID
     AWS Access Key
     AWS Secret Key
+
 
 INSTALLATION
 ================================================================================
