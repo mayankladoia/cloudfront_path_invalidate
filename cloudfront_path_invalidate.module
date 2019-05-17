@@ -198,7 +198,7 @@ EOD;
         'Content-Type' => 'text/xml; charset=UTF-8',
         'Authorization' => 'AWS ' . $access_key . ':' . $sig . '',
         'Content-Length' => $len,
-        'Date' => $date
+        'Date' => $date,
       ),
       'timeout' => 300000,
       'data' => $xml,
