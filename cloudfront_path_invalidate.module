@@ -200,7 +200,7 @@ EOD;
         'Content-Length' => $len,
         'Date' => $date,
       ),
-      'timeout' => 300000,
+      'timeout' => 30,
       'data' => $xml,
     );
     $response = drupal_http_request('https://cloudfront.amazonaws.com/2010-11-01/distribution/' . $distribution . '/invalidation', $options);
