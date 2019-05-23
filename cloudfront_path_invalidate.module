@@ -245,7 +245,7 @@ function cloudfront_path_invalidate_path_delete($path) {
 }
 
 /**
- * Main function that clears CDN and varnish cache.
+ * Function that clears CDN and varnish cache for path enterd by user in config.
  */
 function cloudfront_path_invalidate_invalidation_page_submit($form, &$form_state) {
   $paths = array(
