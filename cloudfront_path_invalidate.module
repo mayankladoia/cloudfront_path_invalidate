@@ -258,7 +258,7 @@ function cloudfront_path_invalidate_invalidation_page_submit($form, &$form_state
     invalidated on CDN.', array('@invalidated_path' => $form["cloudfront_path_invalidate_invalidation_url"]["#value"])));
   }
   else {
-    drupal_set_message(t('Error' . $response . ': Unable to invalidate path. Please check 
-    your AWS Credentials.'));
+    drupal_set_message(t('Error @response: Unable to invalidate path. Please check 
+    your AWS Credentials.', array('@response' => $response)));
   }
 }
