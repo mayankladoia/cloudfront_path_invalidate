@@ -3,4 +3,5 @@ description = Contains hooks for invalidation of paths on AWS cloudfront CDN
 dependencies[] = path
 dependencies[] = token
 dependencies[] = pathauto
+core = 7.x
 configure = admin/config/cloudfront_path_invalidate_settings/CDNInvalidate
